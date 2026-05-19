@@ -1,10 +1,12 @@
 package modelo;
 
+import java.sql.Date;
+
 public class Partido {
 
     // Atributos
     private int idPartido;
-    private String fecha;
+    private Date fecha;
     private String estadio;
     private int golLocal;
     private int golVisitantes;
@@ -14,7 +16,7 @@ public class Partido {
     public Partido() {
     }
 
-    public Partido(int idPartido, String fecha, String estadio, int golLocal, int golVisitantes, Equipo equipo1, Equipo equipo2) {
+    public Partido(int idPartido, Date fecha, String estadio, int golLocal, int golVisitantes, Equipo equipo1, Equipo equipo2) {
         this.idPartido = idPartido;
         this.fecha = fecha;
         this.estadio = estadio;
@@ -32,11 +34,11 @@ public class Partido {
         this.idPartido = idPartido;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -82,4 +84,5 @@ public class Partido {
 
    
 }
+
 
