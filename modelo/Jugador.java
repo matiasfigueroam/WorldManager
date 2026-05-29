@@ -15,11 +15,15 @@ public class Jugador {
     private int goles;
     private int asistencias;
     private int cantFaltas;
+    private Integer idEquipo3;
+    
 
     public Jugador() {
     }
 
-    public Jugador(int idJugador, String nombre, String apellido, int edad, int dni, String pais, String posicion, int camiseta, int partidosJugados, int goles, int asistencias, int cantFaltas) {
+public Jugador(int idJugador, String nombre, String apellido, int edad, int dni, 
+               String pais, String posicion, int camiseta, int partidosJugados, 
+               int goles, int asistencias, int cantFaltas, int idEquipo3) {        
         this.idJugador = idJugador;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -32,6 +36,7 @@ public class Jugador {
         this.goles = goles;
         this.asistencias = asistencias;
         this.cantFaltas = cantFaltas;
+        this.idEquipo3 = idEquipo3;
     }
 
     public int getIdJugador() {
@@ -129,7 +134,14 @@ public class Jugador {
     public void setCantFaltas(int cantFaltas) {
         this.cantFaltas = cantFaltas;
     }
+    
+    public Integer getIdEquipo3() {
+    return idEquipo3;
+    }
 
+    public void setIdEquipo3(Integer idEquipo3) {
+        this.idEquipo3 = idEquipo3;
+    }
+   
     
 }
-
