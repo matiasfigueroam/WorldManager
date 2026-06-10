@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
 import conexion.Conexion;
@@ -11,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 /**
  *
@@ -35,7 +31,7 @@ public class GestionarPartido {
         try {              
             cn = c.conectar();
             ps = cn.prepareStatement("INSERT INTO partido (fecha, estadio, goles_lo, goles_vi, id_torneo1, id_equipo1, id_equipo2) VALUES (?,?,?,?,?,?,?)");
-            ps.setDate(1, p.getFecha());
+            ps.setDate(1, java.sql.Date.valueOf(p.getFecha()));
             ps.setString(2, p.getEstadio());  
             ps.setInt(3, p.getGolLocal()); 
             ps.setInt(4, p.getGolVisitantes()); 
@@ -66,7 +62,7 @@ public class GestionarPartido {
         while (rs.next()){
             Partido p1 = new Partido();
             p1.setIdPartido(rs.getInt(1));
-            p1.setFecha(rs.getDate(2));
+            p1.setFecha(rs.getDate(2).toLocalDate());
             p1.setEstadio(rs.getString(3));
             p1.setGolLocal(rs.getInt(4));
             p1.setGolVisitantes(rs.getInt(5));
@@ -100,22 +96,25 @@ public class GestionarPartido {
         boolean respuesta = false;
         try {              
             cn = c.conectar();
-            ps = cn.prepareStatement("UPDATE partido SET fecha=?,estadio=?,goles_lo=?, goles_vi=?, id_torneo1, id_equipo1=?, id_equipo2=? WHERE idpartido=?");
-            ps.setDate(1, p.getFecha());
+            ps = cn.prepareStatement("UPDATE partido SET fecha=?,estadio=?,goles_lo=?, goles_vi=?, id_torneo1=?, id_equipo1=?, id_equipo2=? WHERE id_partido=?");
+            ps.setDate(1, java.sql.Date.valueOf(p.getFecha()));
             ps.setString(2, p.getEstadio());
             ps.setInt(3, p.getGolLocal()); 
             ps.setInt(4, p.getGolVisitantes());
             ps.setInt(5, 1);
             ps.setInt(6, 1);
             ps.setInt(7, 2);
+            ps.setInt(8, p.getIdPartido());
             int res = ps.executeUpdate(); 
             respuesta = res>0;
         } catch (SQLException e) {
+            System.out.print(e);
         }finally {
             try {                
                 if (ps!=null) {ps.close();}
                 if (cn!=null) {cn.close();}
             } catch (SQLException e2) {
+                System.out.print(e2);
             }
         }    
         return respuesta;
@@ -141,5 +140,3 @@ public class GestionarPartido {
         return respuesta;
     }
 }
-
-
