@@ -1,12 +1,13 @@
 package modelo;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Partido {
 
     // Atributos
     private int idPartido;
-    private Date fecha;
+    private LocalDate fecha;
     private String estadio;
     private int golLocal;
     private int golVisitantes;
@@ -16,7 +17,7 @@ public class Partido {
     public Partido() {
     }
 
-    public Partido(int idPartido, Date fecha, String estadio, int golLocal, int golVisitantes, Equipo equipo1, Equipo equipo2) {
+    public Partido(int idPartido, LocalDate fecha, String estadio, int golLocal, int golVisitantes, Equipo equipo1, Equipo equipo2) {
         this.idPartido = idPartido;
         this.fecha = fecha;
         this.estadio = estadio;
@@ -34,11 +35,11 @@ public class Partido {
         this.idPartido = idPartido;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
